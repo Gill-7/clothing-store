@@ -4,7 +4,6 @@ import FormInput from "../formInput/FormInput";
 
 import {
   signInWithGoogle,
-  createUserDocumentFromAuth,
   signinWithEmailAndPassword,
 } from "../../utils/firebase/Firebase";
 
@@ -21,8 +20,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signinWithEmailAndPassword(email, password);
-      console.log(response);
+      await signinWithEmailAndPassword(email, password);
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -48,9 +46,7 @@ const SignInForm = () => {
   };
 
   const signinWithGoogle = async () => {
-    const { user } = await signInWithGoogle();
-    const createUserDoc = await createUserDocumentFromAuth(user);
-    console.log(createUserDoc);
+    await signInWithGoogle();
   };
 
   return (
