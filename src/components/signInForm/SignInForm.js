@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Button from "../button/Button";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/Button";
 import FormInput from "../formInput/FormInput";
-
 import {
   signInWithGoogle,
   signinWithEmailAndPassword,
 } from "../../utils/firebase/Firebase";
+
+import { SigninContainer, ButtonsContainer } from "./SignInForm.styles.js";
 
 const defaultFormFields = {
   email: "",
@@ -50,7 +51,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SigninContainer>
       <h2>Already have an account?</h2>
       <span>Sign in with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -70,16 +71,20 @@ const SignInForm = () => {
           value={password}
           onChange={handleChange}
         />
-        <div className="buttons-container">
-          <Button type="submit" buttonType="inverted">
+        <ButtonsContainer>
+          <Button type="submit" buttonType={BUTTON_TYPES_CLASSES.inverted}>
             Sign In
           </Button>
-          <Button type="button" onClick={signinWithGoogle} buttonType="google">
+          <Button
+            type="button"
+            onClick={signinWithGoogle}
+            buttonType={BUTTON_TYPES_CLASSES.google}
+          >
             Google Sign in
           </Button>
-        </div>
+        </ButtonsContainer>
       </form>
-    </div>
+    </SigninContainer>
   );
 };
 
